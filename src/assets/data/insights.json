@@ -1,0 +1,51 @@
+{
+  "categories": [
+    { "id": "coffee-waste", "name": "Coffee Waste Management" },
+    { "id": "community-agency", "name": "Community Agency" },
+    { "id": "policy", "name": "Policy & Governance" },
+    { "id": "regenerative-agriculture", "name": "Regenerative Agriculture" },
+    { "id": "research", "name": "Research Publications" }
+  ],
+  "content": [
+    {
+      "id": "coffee-waste-challenges",
+      "title": "Coffee Waste Management: Challenges and Opportunities for Regenerative Solutions",
+      "type": "Issue Paper",
+      "category": "coffee-waste",
+      "date": "2025-09-18",
+      "excerpt": "Examination of coffee waste management problems, environmental impacts, and opportunities to transform waste into wealth within regenerative agriculture frameworks.",
+      "keyPoints": [
+        "Wet processing methods use 5-15 liters of water per kg of coffee",
+        "Waste contains toxic substances including caffeine, tannins, and polyphenols",
+        "Causes severe water pollution, soil degradation, and health risks"
+      ],
+      "fileUrl": "/documents/coffee-waste-management.pdf"
+    },
+    {
+      "id": "fsip-workshop-report",
+      "title": "Building Agency for Disadvantaged Communities in Wanja Kerssa",
+      "type": "Workshop Report",
+      "category": "community-agency",
+      "date": "2025-03-18",
+      "excerpt": "Report from the second Food System Innovation Platform (FSIP) Workshop focused on advancing collective understanding and strengthening collaboration around food system transformation.",
+      "keyPoints": [
+        "97% of households depend on farming",
+        "Only 10% of women and 11% of children had adequate nutrition",
+        "Eight priority disadvantaged groups identified"
+      ]
+    },
+    {
+      "id": "regenerative-action-plan",
+      "title": "Stakeholders Workshop on Regenerative Action Plan for Coffee Waste Management",
+      "type": "News Brief",
+      "category": "coffee-waste",
+      "date": "2025-07-31",
+      "excerpt": "Workshop convened to validate challenges and opportunities identified by the Wanja Kerssa community and jointly develop an action plan for addressing coffee processing waste.",
+      "keyPoints": [
+        "40 processing plants closed due to lagoon-related issues",
+        "Farmers shifting from wet to dry processing due to health hazards",
+        "Cooperative processors contribute more pollution than private enterprises"
+      ]
+    }
+  ]
+}

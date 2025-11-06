@@ -1,0 +1,50 @@
+{
+  "featured": {
+    "id": "coffee-waste-management",
+    "title": "Regenerative Coffee Waste Management in Wanja Kerssa",
+    "tagline": "Transforming environmental challenges into circular economy opportunities",
+    "status": "Active",
+    "landscape": "Wanja Kerssa",
+    "challenges": [
+      "Weak linkages between farmers, investors, and regulatory bodies",
+      "Undersized lagoons releasing untreated effluent",
+      "Outdated processing machines consuming excessive water",
+      "Land allocation below legal requirements",
+      "Poor enforcement of existing regulations"
+    ],
+    "solutions": [
+      "Construct larger lagoons to prevent overflow",
+      "Plant vetiver grass to filter and clean wastewater",
+      "Introduce improved recycling technologies",
+      "Facilitate importation of modern processing machines",
+      "Establish a task force for implementation oversight"
+    ],
+    "partners": [
+      "Jimma University",
+      "Jimma Zone EPA",
+      "Gera Woreda Office of Agriculture",
+      "Local Coffee Processors"
+    ],
+    "image": "coffee-processing-plant.jpg"
+  },
+  "otherProjects": [
+    {
+      "id": "pacsmac",
+      "title": "Paradoxes of Climate-Smart Coffee (PACSMAC)",
+      "focus": "Climate adaptation strategies for coffee production",
+      "status": "Active"
+    },
+    {
+      "id": "abcdrybasin",
+      "title": "ABCDryBASIN",
+      "focus": "Enhancing drought resilience through indigenous knowledge and smart tools",
+      "status": "Active"
+    },
+    {
+      "id": "transform",
+      "title": "TRANSFORM Soil Fertility Management",
+      "focus": "Addressing critical issues related to soil health and fertility",
+      "status": "Active"
+    }
+  ]
+}

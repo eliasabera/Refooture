@@ -1,0 +1,80 @@
+{
+  "leadership": [
+    {
+      "name": "Dr. Tewodros Tefera",
+      "title": "REFOOTURE Project Manager & Co-Strategic Lead",
+      "bio": "A dynamic leader in socioeconomic development with extensive experience in regenerative and inclusive food systems, agricultural policy analysis, and market development. He currently serves as the Co-Strategic Leader and Ethiopia Lead for the Food Futures Eastern Africa (REFOOTURE) Project.",
+      "expertise": [
+        "Agricultural Economics",
+        "Project Management",
+        "Value Chain Development"
+      ],
+      "contact": {
+        "email": "Teddy.tefera@wur.nl",
+        "phone": "+251 921 628 030"
+      },
+      "publications": 50,
+      "image": "tewodros-tefera.jpg"
+    },
+    {
+      "name": "Prof. Dr. Gezahegn Berecha Yadessa",
+      "title": "Senior Technical Advisor for Regenerative Agriculture, SWR-Ethiopia",
+      "bio": "An Ethiopian scholar with extensive experience in teaching, research, and project coordination. He currently serves as Director of the International Institute of Coffee Research at Jimma University.",
+      "expertise": ["Coffee Research", "Agroecology", "Project Coordination"],
+      "publications": 100,
+      "image": "gezahegn-berecha.jpg"
+    }
+  ],
+  "advisors": [
+    {
+      "name": "Prof. Yihenew G. Selassie Mengesha (PhD)",
+      "title": "Senior Soil Health Advisor",
+      "bio": "Professor of Soil Science with extensive experience in soil chemistry and natural resources management. He has co-developed and co-coordinated 12 projects with Wageningen University and Research.",
+      "expertise": [
+        "Soil Science",
+        "Soil Chemistry",
+        "Natural Resources Management"
+      ],
+      "publications": 80,
+      "image": "yihenew-selassie.jpg"
+    },
+    {
+      "name": "Tilaye Teklewold Deneke (PhD)",
+      "title": "Adviser on Innovation Documentation, Scaling, and Regenerative Agriculture",
+      "bio": "An Ethiopian agricultural socio-economist with over 20 years of experience. His expertise spans agricultural extension and economics, institutional resource economics, climate resilience, and food systems.",
+      "expertise": [
+        "Agricultural Socio-economics",
+        "Climate Resilience",
+        "Scaling Innovations"
+      ],
+      "publications": 30,
+      "image": "tilaye-teklewold.jpg"
+    }
+  ],
+  "facilitators": [
+    {
+      "name": "Marta Hailemariam Mamo",
+      "title": "Lecturer & Change Facilitator",
+      "bio": "A lecturer in the Department of Rural Development and Agricultural Extension at Jimma University. She serves as a change facilitator for Regenerative Agriculture within the REFOOTURE II project.",
+      "expertise": [
+        "Rural Development",
+        "Community Facilitation",
+        "Climate-Smart Agriculture"
+      ],
+      "projects": ["PACSMAC", "ABCDryBASIN"],
+      "image": "marta-hailemariam.jpg"
+    },
+    {
+      "name": "Melkamu Mamuye",
+      "title": "GIS and Remote Sensing Expert",
+      "bio": "A lecturer and researcher at Jimma University with expertise in natural resource management, watershed management, and climate change adaptation. His current research focuses on modeling the impacts of climate change on coffee.",
+      "expertise": [
+        "GIS & Remote Sensing",
+        "Climate Modeling",
+        "Watershed Management"
+      ],
+      "publications": 15,
+      "image": "melkamu-mamuye.jpg"
+    }
+  ]
+}

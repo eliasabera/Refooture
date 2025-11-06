@@ -1,0 +1,38 @@
+{
+  "wanjaKerssaBaseline": {
+    "households": {
+      "agrarianLivelihoods": 97,
+      "landOwnership": 1.11,
+      "cropDiversification": 4.41
+    },
+    "nutrition": {
+      "acceptableFoodConsumption": 79,
+      "womenAdequateNutrition": 10,
+      "childrenAdequateNutrition": 11
+    },
+    "practices": {
+      "cropRotation": 75,
+      "compostUse": 43,
+      "energySavingStoves": 65.8,
+      "forestDegradationReported": 35.8
+    },
+    "social": {
+      "groupMembership": 61.4,
+      "farmerTrainingUptake": 97.47,
+      "onFarmIncome": 93.67
+    }
+  },
+  "environmental": {
+    "coffeeProcessing": {
+      "waterUsagePerKg": "5-15 liters",
+      "wetProcessingStations": 400
+    }
+  },
+  "project": {
+    "team": {
+      "scientificPublications": 245,
+      "phdResearchers": 8,
+      "ongoingProjects": 6
+    }
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "rifsPrinciples": [
+    {
+      "id": "sense-of-place",
+      "title": "Sense of Place and Purpose",
+      "description": "Grounding innovations in local contexts, cultures, and community aspirations while maintaining alignment with broader regenerative goals.",
+      "icon": "location"
+    },
+    {
+      "id": "ecological-design",
+      "title": "Ecological Design for Innovation",
+      "description": "Creating solutions that work with natural systems, enhance biodiversity, and regenerate ecosystem services rather than depleting them.",
+      "icon": "ecosystem"
+    },
+    {
+      "id": "connectedness",
+      "title": "Connectedness",
+      "description": "Fostering strong relationships and collaboration among all stakeholders—thinkers, enablers, and doers—across the food system.",
+      "icon": "network"
+    },
+    {
+      "id": "fair-transition",
+      "title": "Fair, Just, and Inclusive Transition",
+      "description": "Ensuring that the benefits of food system transformation are shared equitably, with particular attention to disadvantaged groups.",
+      "icon": "equity"
+    },
+    {
+      "id": "living-process",
+      "title": "Living Process",
+      "description": "Embracing adaptation, learning, and continuous improvement through real-world experimentation and community feedback.",
+      "icon": "growth"
+    }
+  ],
+  "coreValues": [
+    {
+      "value": "Regeneration",
+      "description": "Going beyond sustainability to actively restore and enhance ecological and social systems."
+    },
+    {
+      "value": "Inclusion",
+      "description": "Ensuring all voices are heard, particularly those of disadvantaged and marginalized communities."
+    },
+    {
+      "value": "Collaboration",
+      "description": "Breaking down silos and working across disciplines, sectors, and institutions."
+    },
+    {
+      "value": "Evidence-Based Action",
+      "description": "Grounding decisions in rigorous research, local knowledge, and continuous learning."
+    }
+  ]
+}

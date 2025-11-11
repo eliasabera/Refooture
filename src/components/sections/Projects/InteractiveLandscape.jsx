@@ -1,48 +1,154 @@
 // sections/Projects/InteractiveLandscape.jsx
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Section from "../../ui/Section";
 import projectsData from "../../../assets/data/projects.json";
 
+// Import Leaflet CSS and JS
+import "leaflet/dist/leaflet.css";
+import L from "leaflet";
+
+// Fix for default markers in Leaflet with Webpack
+delete L.Icon.Default.prototype._getIconUrl;
+L.Icon.Default.mergeOptions({
+  iconRetinaUrl:
+    "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png",
+  iconUrl:
+    "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png",
+  shadowUrl:
+    "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png",
+});
+
 const InteractiveLandscape = () => {
   const [activeProject, setActiveProject] = useState(null);
-  const [view, setView] = useState("map"); // 'map' or 'list'
+  const [view, setView] = useState("map");
+  const mapRef = useRef(null);
+  const mapInstanceRef = useRef(null);
+  const markersRef = useRef([]);
 
   const { featured, otherProjects } = projectsData;
 
+  // Real coordinates for Wanja Kerssa, Ethiopia (approximate)
   const projectLocations = [
     {
       id: "coffee-waste-management",
       name: "Coffee Waste Management",
-      x: 30,
-      y: 60,
+      lat: 7.6769,
+      lng: 36.8357,
       status: "active",
       type: "featured",
     },
     {
       id: "pacsmac",
       name: "PACSMAC",
-      x: 60,
-      y: 30,
+      lat: 7.68,
+      lng: 36.83,
       status: "active",
       type: "research",
     },
     {
       id: "abcdrybasin",
       name: "ABCDryBASIN",
-      x: 70,
-      y: 70,
+      lat: 7.673,
+      lng: 36.84,
       status: "active",
       type: "resilience",
     },
     {
       id: "transform",
       name: "TRANSFORM",
-      x: 40,
-      y: 40,
+      lat: 7.6785,
+      lng: 36.8325,
       status: "active",
       type: "soil",
     },
   ];
+
+  useEffect(() => {
+    if (view === "map" && mapRef.current && !mapInstanceRef.current) {
+      // Initialize map
+      const map = L.map(mapRef.current).setView([7.6769, 36.8357], 14);
+
+      // Add OpenStreetMap tiles
+      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        attribution:
+          '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+        maxZoom: 18,
+      }).addTo(map);
+
+      // Create custom icons for different project types
+      const createCustomIcon = (color) => {
+        return L.divIcon({
+          html: `
+            <div style="
+              background-color: ${color};
+              width: 20px;
+              height: 20px;
+              border: 3px solid white;
+              border-radius: 50%;
+              box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            "></div>
+          `,
+          className: "custom-marker",
+          iconSize: [26, 26],
+          iconAnchor: [13, 13],
+        });
+      };
+
+      const iconColors = {
+        featured: "#4379D0",
+        research: "#000000",
+        resilience: "#3a6abb",
+        soil: "#2a4a8a",
+      };
+
+      // Add markers to map
+      projectLocations.forEach((location) => {
+        const marker = L.marker([location.lat, location.lng], {
+          icon: createCustomIcon(iconColors[location.type]),
+        }).addTo(map);
+
+        marker.bindPopup(`
+          <div class="p-2">
+            <h3 class="font-bold text-lg">${location.name}</h3>
+            <p class="text-sm text-gray-600">${
+              getProjectById(location.id)?.tagline || ""
+            }</p>
+            <button 
+              onclick="window.dispatchEvent(new CustomEvent('projectClick', { detail: '${
+                location.id
+              }' }))"
+              class="mt-2 px-3 py-1 bg-[#4379D0] text-white text-sm rounded hover:bg-[#3a6abb] transition-colors"
+            >
+              View Details
+            </button>
+          </div>
+        `);
+
+        marker.on("click", () => {
+          setActiveProject(location.id);
+        });
+
+        markersRef.current.push(marker);
+      });
+
+      // Handle custom events from popup
+      const handleProjectClick = (event) => {
+        setActiveProject(event.detail);
+      };
+
+      window.addEventListener("projectClick", handleProjectClick);
+
+      mapInstanceRef.current = map;
+
+      return () => {
+        window.removeEventListener("projectClick", handleProjectClick);
+        if (mapInstanceRef.current) {
+          mapInstanceRef.current.remove();
+          mapInstanceRef.current = null;
+        }
+      };
+    }
+  }, [view]);
 
   const getProjectColor = (projectType) => {
     const colors = {
@@ -96,92 +202,36 @@ const InteractiveLandscape = () => {
         </div>
 
         {view === "map" ? (
-          /* Interactive Map */
+          /* Interactive Leaflet Map */
           <div className="relative bg-gray-50 rounded-2xl border-2 border-[#000000] border-opacity-10 p-8">
-            <div className="relative w-full h-96 bg-gradient-to-br from-green-50 to-blue-50 rounded-xl overflow-hidden">
-              {/* Map Background with Topography */}
-              <div className="absolute inset-0 opacity-20">
-                <div className="absolute top-10 left-10 w-64 h-64 bg-[#4379D0] rounded-full blur-3xl"></div>
-                <div className="absolute bottom-10 right-10 w-80 h-80 bg-[#000000] rounded-full blur-3xl"></div>
-              </div>
+            <div
+              ref={mapRef}
+              className="w-full h-96 rounded-xl overflow-hidden"
+            />
 
-              {/* Topography Lines */}
-              <svg className="absolute inset-0 w-full h-full opacity-10">
-                {Array.from({ length: 10 }, (_, i) => (
-                  <line
-                    key={i}
-                    x1="0"
-                    y1={i * 10 + 10}
-                    x2="100%"
-                    y2={i * 10 + 10}
-                    stroke="#000000"
-                    strokeWidth="1"
-                  />
-                ))}
-              </svg>
-
-              {/* Project Points */}
-              {projectLocations.map((location) => (
-                <button
-                  key={location.id}
-                  onClick={() => setActiveProject(location.id)}
-                  className={`absolute transform -translate-x-1/2 -translate-y-1/2 transition-all duration-300 ${
-                    activeProject === location.id
-                      ? "scale-125 z-10"
-                      : "scale-100 z-0 hover:scale-110"
-                  }`}
-                  style={{
-                    left: `${location.x}%`,
-                    top: `${location.y}%`,
-                    color: getProjectColor(location.type),
-                  }}
-                >
-                  <div
-                    className="w-8 h-8 rounded-full border-4 bg-white shadow-lg flex items-center justify-center"
-                    style={{ borderColor: getProjectColor(location.type) }}
-                  >
-                    <div
-                      className="w-4 h-4 rounded-full animate-pulse"
-                      style={{
-                        backgroundColor: getProjectColor(location.type),
-                      }}
-                    ></div>
-                  </div>
-
-                  {/* Project Label */}
-                  <div
-                    className={`absolute top-full left-1/2 transform -translate-x-1/2 mt-2 bg-[#000000] text-white px-3 py-1 rounded-lg text-sm whitespace-nowrap transition-opacity duration-200 ${
-                      activeProject === location.id
-                        ? "opacity-100"
-                        : "opacity-0"
-                    }`}
-                  >
-                    {location.name}
-                    <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 border-4 border-transparent border-b-[#000000]"></div>
-                  </div>
-                </button>
-              ))}
-
-              {/* Legend */}
-              <div className="absolute bottom-4 left-4 bg-white rounded-lg shadow-lg p-4 border border-[#000000] border-opacity-10">
-                <h4 className="font-semibold text-[#000000] mb-2">
-                  Project Types
-                </h4>
-                <div className="space-y-1">
-                  <div className="flex items-center space-x-2">
-                    <div className="w-3 h-3 rounded-full bg-[#4379D0]"></div>
-                    <span className="text-sm text-[#000000]">
-                      Featured Project
-                    </span>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <div className="w-3 h-3 rounded-full bg-[#000000]"></div>
-                    <span className="text-sm text-[#000000]">Research</span>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <div className="w-3 h-3 rounded-full bg-[#3a6abb]"></div>
-                    <span className="text-sm text-[#000000]">Resilience</span>
-                  </div>
+            {/* Legend */}
+            <div className="absolute bottom-70 left-6 bg-white rounded-lg shadow-lg p-4 border border-[#000000] border-opacity-10 z-[1000]">
+              <h4 className="font-semibold text-[#000000] mb-2">
+                Project Types
+              </h4>
+              <div className="space-y-1">
+                <div className="flex items-center space-x-2">
+                  <div className="w-3 h-3 rounded-full bg-[#4379D0]"></div>
+                  <span className="text-sm text-[#000000]">
+                    Featured Project
+                  </span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <div className="w-3 h-3 rounded-full bg-[#000000]"></div>
+                  <span className="text-sm text-[#000000]">Research</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <div className="w-3 h-3 rounded-full bg-[#3a6abb]"></div>
+                  <span className="text-sm text-[#000000]">Resilience</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <div className="w-3 h-3 rounded-full bg-[#2a4a8a]"></div>
+                  <span className="text-sm text-[#000000]">Soil Health</span>
                 </div>
               </div>
             </div>
@@ -220,7 +270,7 @@ const InteractiveLandscape = () => {
                     (partner, index) => (
                       <span
                         key={index}
-                        className="px-3 py-1 bg-[#4379D0] bg-opacity-10 text-[#4379D0] text-sm rounded-full"
+                        className="px-3 py-1 bg-[#4379D0] bg-opacity-10 text-[#fff] text-sm rounded-full"
                       >
                         {partner}
                       </span>
@@ -241,7 +291,6 @@ const InteractiveLandscape = () => {
             )}
           </div>
         ) : (
-          /* List View */
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {/* Featured Project */}
             <div

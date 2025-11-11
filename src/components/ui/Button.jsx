@@ -29,7 +29,7 @@ const Button = ({
       shadow-lg hover:shadow-xl
     `,
     secondary: `
-      bg-transparent text-[#000000] border-2 border-[#4379D0]
+      bg-transparent text-[#fff] border-2 border-[#4379D0]
       hover:bg-[#4379D0] hover:text-white
     `,
     ghost: `

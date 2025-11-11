@@ -1,24 +1,14 @@
 // layout/Header.jsx
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigation } from "../../contexts/NavigationContext";
 import { useLocation, useNavigate } from "react-router-dom";
 import logo from "../../assets/images/logo/Picture1.jpg";
 
 const Header = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { currentSection, scrollToSection } = useNavigation();
   const location = useLocation();
   const navigate = useNavigate();
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   const navigationItems = [
     { id: "home", label: "Home", path: "/" },
@@ -49,12 +39,7 @@ const Header = () => {
   };
 
   return (
-    <header
-      className={`
-      fixed top-0 left-0 right-0 z-50 transition-all duration-300
-      ${isScrolled ? "bg-white shadow-lg py-2" : "bg-transparent py-4"}
-    `}
-    >
+    <header className="fixed top-0 left-0 right-0 z-50 bg-white shadow-lg py-4 transition-all duration-300">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
